@@ -29,7 +29,7 @@ function plainSent2Conllu(text) {
        if(sent.tokens[i]['form'].match(/^[$%€£¥Æ§©]+$/)) {
          sent.tokens[i]['upostag'] = 'SYM';
        }
-    }    
+    }
 
     return sent.serial;
 }
@@ -55,7 +55,8 @@ function SD2Conllu(text) {
 function txtCorpus2Conllu(text) {
     var corpus;
     var newContents = [];
-    var splitted = text.match(/[^ ].+?[.!?](?=( |$|\n))/g);
+    // var splitted = text.match(/[^ ].+?[ .!?](?=( |$|\n))/g);
+    var splitted = text.match(/[\s\S]+/g);
     $.each(splitted, function(i, sentence) {
         sentence = plainSent2Conllu(sentence.trim());
         newContents.push(sentence);
